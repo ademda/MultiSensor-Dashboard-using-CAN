@@ -1,0 +1,1 @@
+This Repo will follow me trying to implement CAN protocol between two stm32 nodes...one readign from 3 sensors and the other displaying on the dashboard for monitoring purposes, also tracking any misbehavior in the sensor task or the sensor itself
