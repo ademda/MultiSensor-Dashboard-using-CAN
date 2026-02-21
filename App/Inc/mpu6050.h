@@ -8,6 +8,8 @@
 #ifndef INC_MPU6050_H_
 #define INC_MPU6050_H_
 
+#define IMU_DATA_LENGHT	8
+
 #define MPU6050_ADDR 		0xD0
 #define WHO_AM_I_REG 		0x75
 #define PWR_MGMT_1_REG		0x6B
@@ -60,10 +62,6 @@ typedef struct{
 	MPU6050_CalibState_t calib_status;
 } MPU6050_t;
 
-typedef struct {
-	float pitch;
-	float roll;
-} MPU6050_queue_item_t;
 
 typedef struct {
 	uint8_t accRxBuf[8];

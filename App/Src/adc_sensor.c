@@ -22,3 +22,4 @@ void Get_Lum_Val_DMA_Complete(){
 	lum_val_ready = 1;
 }
 
+

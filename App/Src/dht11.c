@@ -8,6 +8,8 @@
 #include "main.h"
 #include "dht11.h"
 
+dht11_t dht11;
+
 void DHT11_Start(void)
 {
 	Set_Pin_Output (DHT11_GPIO_Port, DHT11_Pin);
