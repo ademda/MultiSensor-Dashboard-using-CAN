@@ -18,7 +18,6 @@ float Gx_sum = 0, Gy_sum = 0, Gz_sum = 0;
 const int NUM_SAMPLES = 500;
 uint16_t calib_iter = 0;
 MPU6050_t imu;
-MPU6050_queue_item_t imu_queue_item;
 
 
 HAL_StatusTypeDef MPU6050_Init(MPU6050_t *imu){

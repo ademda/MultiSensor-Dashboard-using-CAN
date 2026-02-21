@@ -8,6 +8,8 @@
 #ifndef INC_MPU6050_H_
 #define INC_MPU6050_H_
 
+#include "main.h"
+
 #define IMU_DATA_LENGHT	8
 
 #define MPU6050_ADDR 		0xD0
