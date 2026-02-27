@@ -7,8 +7,18 @@
 
 #include "main.h"
 #include "dht11.h"
+#include "utils.h"
 
 dht11_t dht11;
+
+void Set_Pin_Output(GPIO_TypeDef * gpio_port, uint16_t gpio_pin){
+	gpio_port->MODER &= ~(3 << (gpio_pin * 2));
+	gpio_port->MODER |= (1 << (gpio_pin * 2));
+}
+
+void Set_Pin_Input(GPIO_TypeDef * gpio_port, uint16_t gpio_pin){
+	gpio_port->MODER &= ~(3 << (gpio_pin * 2));
+}
 
 void DHT11_Start(void)
 {

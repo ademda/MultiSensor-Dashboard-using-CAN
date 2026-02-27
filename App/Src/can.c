@@ -8,6 +8,7 @@
 #include "dht11.h"
 #include "mpu6050.h"
 #include "adc_sensor.h"
+#include <string.h>
 
 extern CAN_HandleTypeDef hcan1;
 extern uint16_t lum_value ;
@@ -29,7 +30,7 @@ uint64_t Encode_Imu(MPU6050_t * imu_arg){
 
 uint64_t Encode_Dht11(dht11_t* dht11_arg){
 	uint64_t ret_val = 0;
-	ret_val = ((uint64_t)(dht11_arg->temp) << 8) + (uint32_t)(dht11_arg->hum);
+	ret_val = ((uint64_t)(dht11_arg->temp) << 32) + (uint32_t)(dht11_arg->hum);
 	return ret_val;
 }
 
@@ -55,17 +56,23 @@ void Can_Init(CAN_TxHeaderTypeDef *adc_can_arg, CAN_TxHeaderTypeDef *dht11_can_a
 }
 
 void Send_Lum_Can(CAN_TxHeaderTypeDef *adc_can_arg, uint64_t val, uint32_t *Mailbox){
-	if (HAL_CAN_AddTxMessage(&hcan1, adc_can_arg, val, Mailbox) != HAL_OK){
+	uint8_t data[8];
+	memcpy(data, &val, 8);
+	if (HAL_CAN_AddTxMessage(&hcan1, adc_can_arg, data, Mailbox) != HAL_OK){
 		Error_Handler();
 	}
 }
 void Send_Imu_Can(CAN_TxHeaderTypeDef *imu_can_arg, uint64_t val, uint32_t *Mailbox){
-	if (HAL_CAN_AddTxMessage(&hcan1, imu_can_arg, val, Mailbox) != HAL_OK){
+	uint8_t data[8];
+	memcpy(data, &val, 8);
+	if (HAL_CAN_AddTxMessage(&hcan1, imu_can_arg, data, Mailbox) != HAL_OK){
 		Error_Handler();
 	}
 }
 void Send_dht11_Can(CAN_TxHeaderTypeDef *dht11_can_arg, uint64_t val, uint32_t *Mailbox){
-	if (HAL_CAN_AddTxMessage(&hcan1, dht11_can_arg, val, Mailbox) != HAL_OK){
+	uint8_t data[8];
+	memcpy(data, &val, 8);
+	if (HAL_CAN_AddTxMessage(&hcan1, dht11_can_arg, data, Mailbox) != HAL_OK){
 		Error_Handler();
 	}
 }

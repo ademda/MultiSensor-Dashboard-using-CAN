@@ -15,6 +15,8 @@ typedef struct {
 	float temp;
 }dht11_t;
 
+void Set_Pin_Output(GPIO_TypeDef * GPIO_PORT, uint16_t GPIO_PIN);
+void Set_Pin_Input(GPIO_TypeDef * GPIO_PORT, uint16_t GPIO_PIN);
 void DHT11_Start(void);
 uint8_t DHT11_Read(void);
 #endif /* INC_DHT11_H_ */
